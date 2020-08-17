@@ -48,7 +48,7 @@ func main() {
 	go func() {
 		for {
 			<-ticker.C
-			r, err = c.SayHello(context.Background(), &pb.HelloRequest{Name: grpc_research.GetFullName(50000)})
+			r, err = c.SayHello(context.Background(), &pb.HelloRequest{Name: grpc_research.GetFullName(500)})
 			if err != nil {
 				log.Fatalf("could not greet: %v", err)
 			}
