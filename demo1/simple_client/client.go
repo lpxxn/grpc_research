@@ -22,10 +22,15 @@ func main() {
 	defer conn.Close()
 	c := pb.NewGreeterClient(conn)
 
-	r, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: grpc_research.GetFullName(20)})
+	r, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: grpc_research.GetFullName(2220)})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
 	log.Printf("Greeting: %s", r.GetMessage())
 
+	r, err = c.SayHello(context.Background(), &pb.HelloRequest{Name: grpc_research.GetFullName(2220)})
+	if err != nil {
+		log.Fatalf("could not greet: %v", err)
+	}
+	log.Printf("Greeting: %s", r.GetMessage())
 }

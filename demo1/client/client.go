@@ -44,11 +44,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
-	ticker := time.NewTicker(time.Second / 2)
+	ticker := time.NewTicker(time.Second / 20)
 	go func() {
 		for {
 			<-ticker.C
-			r, err = c.SayHello(context.Background(), &pb.HelloRequest{Name: grpc_research.GetFullName(20)})
+			r, err = c.SayHello(context.Background(), &pb.HelloRequest{Name: grpc_research.GetFullName(50000)})
 			if err != nil {
 				log.Fatalf("could not greet: %v", err)
 			}
