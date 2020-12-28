@@ -14,7 +14,7 @@ import (
 	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
 
-	"github.com/grpc_study/protos/api"
+	"github.com/lpxxn/grpc_research/protos/api"
 )
 
 var port int

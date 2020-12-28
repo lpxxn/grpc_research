@@ -8,8 +8,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/resolver"
 
-	"github.com/grpc_study/common"
-	"github.com/grpc_study/protos/api"
+	"github.com/lpxxn/grpc_research/common"
+	"github.com/lpxxn/grpc_research/protos/api"
 )
 
 func main() {

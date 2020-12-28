@@ -11,9 +11,9 @@ import (
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 
-	"github.com/grpc_study/common"
-	"github.com/grpc_study/protos/api"
-	"github.com/grpc_study/protos/model"
+	"github.com/lpxxn/grpc_research/common"
+	"github.com/lpxxn/grpc_research/protos/api"
+	"github.com/lpxxn/grpc_research/protos/model"
 )
 
 var port int

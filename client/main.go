@@ -11,8 +11,8 @@ import (
 	"github.com/Pallinder/go-randomdata"
 	"google.golang.org/grpc"
 
-	"github.com/grpc_study/protos/api"
-	"github.com/grpc_study/protos/model"
+	"github.com/lpxxn/grpc_research/protos/api"
+	"github.com/lpxxn/grpc_research/protos/model"
 )
 
 var port int

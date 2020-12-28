@@ -747,7 +747,7 @@ public final class Common {
     java.lang.String[] descriptorData = {
       "\n\014common.proto\022\006protos\"2\n\006Result\022\014\n\004code" +
       "\030\001 \001(\t\022\014\n\004desc\030\002 \001(\t\022\014\n\004data\030\003 \001(\014B)\n\tco" +
-      "m.protoZ\034github.com/grpc_study/protosb\006p" +
+      "m.protoZ\034github.com/lpxxn/grpc_research/protosb\006p" +
       "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =

@@ -8,9 +8,9 @@ import (
 
 	"github.com/golang/protobuf/ptypes/empty"
 
-	"github.com/grpc_study/protos"
-	"github.com/grpc_study/protos/api"
-	"github.com/grpc_study/protos/model"
+	"github.com/lpxxn/grpc_research/protos"
+	"github.com/lpxxn/grpc_research/protos/api"
+	"github.com/lpxxn/grpc_research/protos/model"
 )
 
 type StudentSrv struct{ StudentList []*model.Student }

@@ -1874,7 +1874,7 @@ public final class Students {
       "^\n\013StudentList\022\r\n\005class\030\001 \001(\t\022 \n\010student" +
       "s\030\002 \003(\0132\016.model.Student\022\017\n\007teacher\030\003 \001(\t" +
       "\022\r\n\005score\030\004 \003(\003B5\n\017com.proto.modelZ\"gith" +
-      "ub.com/grpc_study/protos/modelb\006proto3"
+      "ub.com/lpxxn/grpc_research/protos/modelb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

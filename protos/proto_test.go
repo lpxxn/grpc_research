@@ -6,8 +6,8 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	_ "github.com/grpc_study/protos/api"
-	"github.com/grpc_study/protos/model"
+	_ "github.com/lpxxn/grpc_research/protos/api"
+	"github.com/lpxxn/grpc_research/protos/model"
 )
 
 func TestStudent1(t *testing.T) {

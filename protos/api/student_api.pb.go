@@ -8,8 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	protos "github.com/grpc_study/protos"
-	model "github.com/grpc_study/protos/model"
+	protos "github.com/lpxxn/grpc_research/protos"
+	model "github.com/lpxxn/grpc_research/protos/model"
 	grpc "google.golang.org/grpc"
 	math "math"
 )

@@ -1,4 +1,4 @@
-module github.com/grpc_study
+module github.com/lpxxn/grpc_research
 
 go 1.15
 
