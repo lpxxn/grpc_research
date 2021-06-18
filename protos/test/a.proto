@@ -1,0 +1,23 @@
+syntax = "proto3";
+package protos;
+option go_package = "a";
+option java_package = "com.a";
+
+import "google/protobuf/timestamp.proto";
+service MySrv {
+  rpc Query(req) returns (Result);
+}
+
+
+message Result {
+  string name = 1;
+  d d = 2;
+}
+
+message req {
+
+}
+
+message d {
+  google.protobuf.Timestamp start_time = 1;
+}
