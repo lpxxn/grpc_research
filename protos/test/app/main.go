@@ -9,6 +9,7 @@ import (
 	"github.com/jhump/protoreflect/desc"
 	"github.com/jhump/protoreflect/desc/protoparse"
 	"github.com/jhump/protoreflect/dynamic"
+	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/reflect/protoregistry"
@@ -36,11 +37,18 @@ func main() {
 	}
 	registerFileDescriptors(fds)
 
-	msg := dynamic.NewMessage(fds[0].FindMessage("protos.Result"))
+	md := fds[0].FindMessage("protos.Result")
+	mdJb, err := json.Marshal(md)
+	fmt.Println(string(mdJb))
+
+	msg := dynamic.NewMessage(md)
 
 	msgJb, err := json.Marshal(msg)
-
 	fmt.Println(string(msgJb))
+
+	msgJb, err = protojson.Marshal(md.AsDescriptorProto())
+	fmt.Println(string(msgJb))
+
 	msgJb, err = msg.MarshalJSONPB(&jsonpb.Marshaler{
 		Indent:       "",
 		EmitDefaults: true,
