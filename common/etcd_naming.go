@@ -79,23 +79,23 @@ func (service *Service) keepAlive() (<-chan *clientv3.LeaseKeepAliveResponse, er
 	val, _ := json.Marshal(info)
 
 	// 创建一个租约
-	resp, err := service.client.Grant(context.TODO(), 5)
+	resp, err := service.client.Grant(context.Background(), 5)
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
 	}
 
-	_, err = service.client.Put(context.TODO(), key, string(val), clientv3.WithLease(resp.ID))
+	_, err = service.client.Put(context.Background(), key, string(val), clientv3.WithLease(resp.ID))
 	if err != nil {
 		log.Fatal(err)
 		return nil, err
 	}
 	service.leaseId = resp.ID
-	return service.client.KeepAlive(context.TODO(), resp.ID)
+	return service.client.KeepAlive(context.Background(), resp.ID)
 }
 
 func (service *Service) revoke() error {
-	_, err := service.client.Revoke(context.TODO(), service.leaseId)
+	_, err := service.client.Revoke(context.Background(), service.leaseId)
 	if err != nil {
 		log.Fatal(err)
 	}
