@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+
 	"go.etcd.io/etcd/api/v3/mvccpb"
 	"go.etcd.io/etcd/client/v3"
 	"google.golang.org/grpc/resolver"
@@ -33,7 +34,7 @@ func (r *Resolver) Scheme() string {
 }
 
 // ResolveNow
-func (r *Resolver) ResolveNow(rn resolver.ResolveNowOption) {
+func (r *Resolver) ResolveNow(rn resolver.ResolveNowOptions) {
 }
 
 // Close
@@ -42,7 +43,7 @@ func (r *Resolver) Close() {
 
 // Build to resolver.Resolver
 // 实现grpc.resolve.Builder接口的方法
-func (r *Resolver) Build(target resolver.Target, cc resolver.ClientConn, opts resolver.BuildOption) (resolver.Resolver, error) {
+func (r *Resolver) Build(target resolver.Target, cc resolver.ClientConn, opts resolver.BuildOptions) (resolver.Resolver, error) {
 	fmt.Printf("target %+v \n", target)
 	var err error
 	r.cli, err = clientv3.New(clientv3.Config{
