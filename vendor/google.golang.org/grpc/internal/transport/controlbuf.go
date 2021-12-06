@@ -22,6 +22,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"log"
 	"runtime"
 	"strconv"
 	"sync"
@@ -577,10 +578,14 @@ func (l *loopyWriter) outgoingWindowUpdateHandler(w *outgoingWindowUpdate) error
 
 func (l *loopyWriter) incomingWindowUpdateHandler(w *incomingWindowUpdate) error {
 	// Otherwise update the quota.
+	defer func() {
+		log.Printf("incomingWindowUpdateHandler streamID: %d, increment: %d, l.sendQuota: %d", w.streamID, w.increment, l.sendQuota)
+	}()
 	if w.streamID == 0 {
 		l.sendQuota += w.increment
 		return nil
 	}
+
 	// Find the stream and update it.
 	if str, ok := l.estdStreams[w.streamID]; ok {
 		str.bytesOutStanding -= int(w.increment)

@@ -42,7 +42,9 @@ func (codec) Marshal(v interface{}) ([]byte, error) {
 	if !ok {
 		return nil, fmt.Errorf("failed to marshal, message is %T, want proto.Message", v)
 	}
-	return proto.Marshal(vv)
+	b, err := proto.Marshal(vv)
+	fmt.Println("proto Marshal sixe: ", len(b))
+	return b, err
 }
 
 func (codec) Unmarshal(data []byte, v interface{}) error {
@@ -50,6 +52,7 @@ func (codec) Unmarshal(data []byte, v interface{}) error {
 	if !ok {
 		return fmt.Errorf("failed to unmarshal, message is %T, want proto.Message", v)
 	}
+	fmt.Println("proto Unmarshal sixe: ", len(data))
 	return proto.Unmarshal(data, vv)
 }
 

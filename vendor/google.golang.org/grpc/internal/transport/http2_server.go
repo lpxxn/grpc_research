@@ -24,6 +24,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"math"
 	"net"
 	"net/http"
@@ -469,8 +470,12 @@ func (t *http2Server) operateHeaders(frame *http2.MetaHeadersFrame, handle func(
 func (t *http2Server) HandleStreams(handle func(*Stream), traceCtx func(context.Context, string) context.Context) {
 	defer close(t.readerDone)
 	for {
+		log.Println("serv HandleStreams ", 1)
+
 		t.controlBuf.throttle()
 		frame, err := t.framer.fr.ReadFrame()
+		log.Printf("serv HandleStreams frame: %#v ", frame)
+
 		atomic.StoreInt64(&t.lastRead, time.Now().UnixNano())
 		if err != nil {
 			if se, ok := err.(http2.StreamError); ok {
@@ -757,6 +762,7 @@ func (t *http2Server) handlePing(f *http2.PingFrame) {
 }
 
 func (t *http2Server) handleWindowUpdate(f *http2.WindowUpdateFrame) {
+	log.Printf("Server streamID: %d, increment: %d", f.Header().StreamID, f.Increment)
 	t.controlBuf.put(&incomingWindowUpdate{
 		streamID:  f.Header().StreamID,
 		increment: f.Increment,

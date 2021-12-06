@@ -30,21 +30,27 @@ func main() {
 	}
 	defer conn.Close()
 	c := api.NewStudentSrvClient(conn)
-
+	//time.Sleep(2*time.Second)
 	for i := 0; i < 1; i++ {
-		go func(idx int) {
-			fmt.Println("new student", idx)
-			r, err := c.NewStudent(context.Background(), &model.Student{
-				Id:   rand.Int63(),
-				Name: randomdata.FullName(randomdata.RandomGender),
-				Age:  rand.Int31n(30),
-			})
-			if err != nil {
-				panic(err)
-			}
-			fmt.Println("add student ", r.Code)
-			//time.Sleep(time.Second * 2)
-		}(i)
+		student := &model.Student{
+			Id:   rand.Int63(),
+			Name: randomdata.FullName(randomdata.RandomGender) + randomdata.City(),
+			Age:  rand.Int31n(30),
+		}
+		ctx, cancel := context.WithCancel(context.Background())
+		go func() {
+			time.Sleep(time.Second*3)
+			cancel()
+		}()
+		r, err := c.NewStudent(ctx, student)
+		if err != nil {
+			panic(err)
+		}
+		//cancel()
+		fmt.Println("add student ", r.Code)
+		time.Sleep(time.Second * 5)
+		fmt.Println("-----------")
 	}
-	time.Sleep(time.Minute * 10)
+	time.Sleep(time.Second)
+	//time.Sleep(time.Second * 10)
 }

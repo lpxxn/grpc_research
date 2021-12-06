@@ -229,6 +229,7 @@ type studentSrvStudentInfoClient struct {
 }
 
 func (x *studentSrvStudentInfoClient) Send(m *QueryStudent) error {
+	fmt.Println("studentSrvStudentInfoClient", m.XXX_Size())
 	return x.ClientStream.SendMsg(m)
 }
 

@@ -22,6 +22,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 	"math"
 	"net"
 	"strconv"
@@ -1343,8 +1344,11 @@ func (t *http2Client) reader() {
 
 	// loop to keep reading incoming messages on this transport.
 	for {
+		log.Printf("client reader ", 1)
 		t.controlBuf.throttle()
 		frame, err := t.framer.fr.ReadFrame()
+		log.Printf("client reader frame: %#v ", frame)
+
 		if t.keepaliveEnabled {
 			atomic.StoreInt64(&t.lastRead, time.Now().UnixNano())
 		}

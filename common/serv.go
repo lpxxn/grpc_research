@@ -4,8 +4,11 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 	"math/rand"
+	"time"
 
+	"github.com/Pallinder/go-randomdata"
 	"github.com/golang/protobuf/ptypes/empty"
 
 	"github.com/lpxxn/grpc_research/protos"
@@ -16,13 +19,32 @@ import (
 type StudentSrv struct{ StudentList []*model.Student }
 
 func (srv *StudentSrv) NewStudent(ctx context.Context, s *model.Student) (*protos.Result, error) {
+	log.Println("new student in")
 	if s != nil {
 		srv.StudentList = append(srv.StudentList, s)
 	}
+	//time.Sleep(time.Hour)
+	time.Sleep(time.Second * 20)
+	if err := checkCtx(ctx); err != nil {
+		return &protos.Result{
+			Code: "false",
+			Desc: err.Error(),
+		}, nil
+	}
 	return &protos.Result{
 		Code: "OK",
-		Desc: "hi!",
+		Desc: randomdata.FullName(randomdata.RandomGender) + randomdata.Address(),
 	}, nil
+}
+
+func checkCtx(ctx context.Context) error {
+	select {
+	case <-ctx.Done():
+		log.Println("ctx canceled")
+		return ctx.Err()
+	default:
+		return nil
+	}
 }
 
 func (srv *StudentSrv) StudentByID(context.Context, *api.QueryStudent) (*api.QueryStudentResponse, error) {
